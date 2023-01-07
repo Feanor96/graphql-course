@@ -4,7 +4,6 @@ const _ = require('lodash');
 
 const resolvers = {
     Query: {
-        //USER RESOLVERS
         users:() => {
             return UserList;
         },
@@ -13,7 +12,8 @@ const resolvers = {
             const user = _.find(UserList, { id: Number(id) })
             return user;
         },
-        //MOVIE RESOLVERS
+
+
         movies:() => {
             return MovieList
         },
@@ -29,7 +29,6 @@ const resolvers = {
         }
     },
     Mutation: {
-        //USER RESOLVERS
         createUser:(parent, args) => {
             const user = args.input;
             const lastId = UserList[UserList.length - 1].id;
@@ -49,6 +48,11 @@ const resolvers = {
       
             return userUpdated;
         },
+        deleteUser: (parent, args) => {
+            const id = args.id;
+            _.remove(UserList, (user) => user.id === Number(id));
+            return null;
+        }
     }
 };
 
