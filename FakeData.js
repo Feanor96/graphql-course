@@ -37,7 +37,7 @@ const UserList = [
         nationality: "GERMANY",
         friends: [
           {
-            id: 3,
+            id: 5,
             name: "Sarah",
             username: "cameron",
             age: 25,
@@ -53,7 +53,7 @@ const UserList = [
         nationality: "CHILE",
       },
       {
-        id: 3,
+        id: 5,
         name: "Sarah",
         username: "cameron",
         age: 25,
