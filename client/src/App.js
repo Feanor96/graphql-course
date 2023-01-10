@@ -1,7 +1,7 @@
 import './App.css';
 import DisplayData from './DisplayData';
 
-import { ApolloClient, InMemoryCache, ApolloProvider, useQuery } from '@apollo/client';
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 
 const App = () => {
   const client = new ApolloClient({
