@@ -7,7 +7,7 @@ const resolvers = {
         users:() => {
             return UserList;
         },
-        user:(parent, args) => {
+        user:(parent, args, context, info) => {
             const id = args.id;
             const user = _.find(UserList, { id: Number(id) })
             return user;
@@ -24,7 +24,8 @@ const resolvers = {
         },
     },
     User: {
-        favouriteMovies:() => {
+        favouriteMovies:(parent) => {
+            console.log(parent);
             return _.filter(MovieList, (movie) => movie.yearOfPublication >= 2000 && movie.yearOfPublication <= 2010)
         }
     },
