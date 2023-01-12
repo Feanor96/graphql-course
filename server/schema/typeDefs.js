@@ -50,6 +50,16 @@ const typeDefs = gql`
         CHILE
         GERMANY
     }
+
+    type UsersSuccesfulResult {
+        users: [User!]!
+    }
+
+    type UsersErrorResult {
+        message: String!
+    }
+
+    union UserResults = UsersSuccesfulResult | UsersErrorResult
 `
 
 module.exports = {typeDefs}

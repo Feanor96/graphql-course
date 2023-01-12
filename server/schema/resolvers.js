@@ -1,11 +1,17 @@
 const { UserList, MovieList } = require('../FakeData'); 
 
 const _ = require('lodash');
+const { UserInputError } = require('apollo-server');
 
 const resolvers = {
     Query: {
-        users:() => {
-            return UserList;
+        users:(parent, args, context, info) => {
+            if (UserList) {
+                return { users: UserList };
+            }
+            return {
+                message: 'There was an error'
+            }
         },
         user:(parent, args, context, info) => {
             const id = args.id;
@@ -25,7 +31,6 @@ const resolvers = {
     },
     User: {
         favouriteMovies:(parent) => {
-            console.log(parent);
             return _.filter(MovieList, (movie) => movie.yearOfPublication >= 2000 && movie.yearOfPublication <= 2010)
         }
     },
@@ -53,6 +58,15 @@ const resolvers = {
             const id = args.id;
             _.remove(UserList, (user) => user.id === Number(id));
             return null;
+        }
+    },
+    UsersResult: {
+        __resolveType(obj) {
+            if (obj.users) {
+                return obj.users;
+            }
+            
+            return obj.message;
         }
     }
 };
