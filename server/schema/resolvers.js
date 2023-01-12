@@ -1,7 +1,5 @@
 const { UserList, MovieList } = require('../FakeData'); 
-
 const _ = require('lodash');
-const { UserInputError } = require('apollo-server');
 
 const resolvers = {
     Query: {
@@ -60,13 +58,17 @@ const resolvers = {
             return null;
         }
     },
-    UsersResult: {
+    UsersResults: {
         __resolveType(obj) {
             if (obj.users) {
-                return obj.users;
+                return 'UsersSuccesfulResult';
             }
             
-            return obj.message;
+            if (obj.message) {
+                return 'UsersErrorResult';
+            }
+
+            return null;
         }
     }
 };

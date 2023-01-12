@@ -59,7 +59,7 @@ const typeDefs = gql`
         message: String!
     }
 
-    union UserResults = UsersSuccesfulResult | UsersErrorResult
+    union UsersResults = UsersSuccesfulResult | UsersErrorResult
 `
 
 module.exports = {typeDefs}
